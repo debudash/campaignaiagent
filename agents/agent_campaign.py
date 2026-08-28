@@ -8,8 +8,6 @@ from typing import Dict, List, TypedDict, Annotated
 from mysql.connector import Error
 from langchain_core.messages import AIMessage, HumanMessage
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langgraph.graph import Graph, MessageGraph
-from langgraph.prebuilt.tool_executor import ToolExecutor
 from langchain.prompts import PromptTemplate
 from langchain.schema import SystemMessage, HumanMessage
 from langchain_community.chat_models import ChatOpenAI

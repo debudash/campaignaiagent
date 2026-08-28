@@ -4,8 +4,7 @@ from datetime import datetime
 from typing_extensions import TypedDict
 from langchain_core.messages import AIMessage, HumanMessage, FunctionMessage
 from langchain_core.prompts import PromptTemplate, ChatPromptTemplate, MessagesPlaceholder
-from langgraph.graph import Graph, MessageGraph
-from langgraph.prebuilt.tool_executor import ToolExecutor
+from langgraph.graph import StateGraph
 from langchain_openai import ChatOpenAI
 from langchain.tools import Tool
 from langsmith import traceable
@@ -126,14 +125,14 @@ Original Query: {query}""")
 # 3. Build the Supervisor Graph
 ###############################################################################
 
-def build_supervisor_graph() -> MessageGraph:
+def build_supervisor_graph():
     """Build the supervisor workflow graph using latest LangGraph patterns"""
     
     # Create the workflow functions
     functions = create_agent_functions()
     
     # Define the workflow
-    workflow = Graph()
+    workflow = StateGraph(AgentState)
     
     # Add nodes
     workflow.add_node("decide", functions["decide"])
